@@ -139,6 +139,9 @@ function demarrerPartie() {
 
   // g. Cacher le message de fin (s'il était affiché)
   messageFin.classList.add("hidden");
+
+  // h. On annonce le démarrage (animations.js nettoie ses effets)
+  document.dispatchEvent(new CustomEvent("partie-demarre"));
 }
 
 // ============================================================
@@ -224,6 +227,9 @@ function finPartie(victoire) {
     // Couleur verte (succès) : on remet d'abord les classes de base
     messageFin.className =
       "font-display mt-6 rounded-2xl border border-green-200 bg-green-50 p-6 text-center text-green-900 shadow-sm";
+
+    // On annonce la victoire au reste du monde (animations.js l'attrape)
+    document.dispatchEvent(new CustomEvent("partie-victoire"));
   } else {
     // 2b. Défaite : on révèle le mot caché en remplaçant les "_" par les lettres
     zoneMot.querySelectorAll("span").forEach((span) => {
@@ -234,6 +240,9 @@ function finPartie(victoire) {
     // Couleur rouge (échec)
     messageFin.className =
       "font-display mt-6 rounded-2xl border border-red-200 bg-red-50 p-6 text-center text-red-900 shadow-sm";
+
+    // On annonce la défaite (animations.js fait tomber la tête)
+    document.dispatchEvent(new CustomEvent("partie-defaite"));
   }
 }
 
