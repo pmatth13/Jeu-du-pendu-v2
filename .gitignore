@@ -1,0 +1,10 @@
+# Dépendances 
+node_modules/
+package-lock.json
+package.json
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+claude.md
