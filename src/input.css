@@ -16,10 +16,10 @@
 }
 
 /* ============================================================
-   Animation des confettis (utilisée par animations.js).
-   --derive et --rotation sont injectées par le JS sur chaque
-   confetti pour rendre la trajectoire unique.
+   Keyframes des animations (déclenchées par animations.js)
    ============================================================ */
+
+/* Confettis : --derive et --rotation injectées par le JS */
 @keyframes chute-confetti {
   0% {
     transform: translateY(-10vh) rotate(0deg);
@@ -32,9 +32,7 @@
   }
 }
 
-/* ============================================================
-   Animation de défaite : tête qui se détache et tombe en tournant.
-   ============================================================ */
+/* Tête qui se détache et tombe en tournant */
 @keyframes tete-detache {
   0% {
     transform: translate(0, 0) rotate(0deg);
@@ -46,9 +44,7 @@
   }
 }
 
-/* ============================================================
-   Animation des gouttes de sang qui coulent depuis le cou.
-   ============================================================ */
+/* Goutte de sang qui coule depuis le cou */
 @keyframes coule-sang {
   0% {
     transform: translateY(0);
@@ -64,9 +60,7 @@
 }
 
 @layer components {
-  /* ============================================================
-     .confetti — petit rectangle qui tombe avec rotation et dérive.
-     ============================================================ */
+  /* Petit rectangle de confetti */
   .confetti {
     @apply pointer-events-none fixed top-0 z-50;
     width: 10px;
@@ -74,30 +68,20 @@
     animation: chute-confetti linear forwards;
   }
 
-  /* ============================================================
-     #tete.tete-tombe — la tête se détache, tombe et tourne.
-     transform-box: fill-box → l'origine de rotation est le centre
-     de la tête (sinon ce serait le coin haut-gauche du SVG).
-     ============================================================ */
+  /* fill-box → l'origine du transform est le centre de l'élément SVG */
   #tete.tete-tombe {
     transform-box: fill-box;
     transform-origin: center;
     animation: tete-detache 2s cubic-bezier(0.55, 0, 0.85, 0.5) forwards;
   }
 
-  /* ============================================================
-     .goutte-sang — gouttelette rouge qui coule depuis le cou.
-     ============================================================ */
   .goutte-sang {
     transform-box: fill-box;
     transform-origin: center;
     animation: coule-sang 1.5s ease-in forwards;
   }
 
-  /* ============================================================
-     .lettre — classe partagée par les 26 boutons du clavier AZERTY.
-     Définie UNE fois ici, appliquée x26 dans le JS.
-     ============================================================ */
+  /* Touche du clavier AZERTY (classe partagée par les 26 boutons) */
   .lettre {
     @apply font-display flex h-12 w-12 items-center justify-center
            rounded-lg border border-stone-200 bg-white text-lg font-semibold
